@@ -52,11 +52,17 @@ It is time to compile static files:
 # npm run build
 ``` 
 
-Finally, you can activate the plugin from the WordPress admin panel.
+Now, you can activate the plugin from the WordPress admin panel.
 
+## Ballot results
+
+To display the widget on a page, you need to add [a shortcode](https://wordpress.com/support/shortcodes/) on this page.
+
+Assuming you are using the visual editor of WordPress, you can add such shortcode by adding a new block. A PLUS sign should appear on the top right corner of this block. Select a shortcode under the WIDGETS modules.
+
+Finally, type `[mj-widget]` there.
 
 ## Setting the results of the election
 
 So far, we only provide a static modification of the election results.
 You need to modify the file `widget/src/resultats.json`. Then, you will need to re-compile the static files as described above.
-
