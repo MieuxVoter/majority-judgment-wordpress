@@ -8,7 +8,8 @@ It is built for the citizen primary in France, called [Primaire Populaire](https
 
 If you need additional features, please contact us using our [website contact form](https://mieuxvoter.fr/) and explain us how we can fit your need!
 
-We do not provide yet releases with built static files. You need to follow the guide to install the project from sources.
+You can download released files as a ZIP file, and upload it in your WordPress admin panel.
+Otherwise, you can also follow below instructions to install the project from sources.
 
 
 ## Install from sources
