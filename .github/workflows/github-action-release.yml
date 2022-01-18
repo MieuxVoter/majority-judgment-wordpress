@@ -1,8 +1,10 @@
 # a new release is executed at each new tag
-on:
-  push:
-    tags:
-      - '*'
+# on:
+#   push:
+#     tags:
+#       - '*'
+# a new release is executed at each new commit
+on: push
 
 jobs:
   build:
