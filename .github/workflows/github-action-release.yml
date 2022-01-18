@@ -5,11 +5,11 @@ on:
       - '*'
 
 jobs:
-  defaults:
-    run:
-      working-directory: ./widget
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./widget
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
@@ -31,6 +31,9 @@ jobs:
           path: build
   release:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./widget
     needs: build
     steps:
       # Download previously shared build
