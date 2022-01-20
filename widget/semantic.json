@@ -1,5 +1,5 @@
 {
-  "base": "src/semantic",
+  "base": "src/semantic/",
   "paths": {
     "source": {
       "config": "src/theme.config",
@@ -16,8 +16,8 @@
     "clean": "dist/"
   },
   "permission": "744",
-  "autoInstall": false,
+  "autoInstall": true,
   "rtl": false,
-  "components": ["label", "card", "label", "card"],
+  "components": ["label", "card"],
   "version": "2.9.0-beta.204"
 }
