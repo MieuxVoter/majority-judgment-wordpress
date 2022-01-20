@@ -31,12 +31,7 @@ FOOOO
 add_shortcode( 'mj_result', function( $atts ) {
 	$default_atts = [
 		'name' => 'Candidate name',
-    'grades' => [
-      'Very Good' => 5,
-      'Good' => 4,
-      'Fair' => 2, 
-      'To Reject' => 6
-    ]
+    'grades' => '1;1;1;1;1'
 	];
   $args = shortcode_atts( $default_atts, $atts );
   $uniqid = uniqid('id');

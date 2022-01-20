@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Result from './components/Result';
 import reportWebVitals from './reportWebVitals';
+import './semantic/dist/semantic.min.css'
+import './index.css';
 
 
 const targets = document.querySelectorAll('.mj-root');
+console.log(targets)
 Array.prototype.forEach.call(targets, target => {
   const id = target.dataset.id;
-  const settings = window.mjSettings[id];
-  ReactDOM.render(<Result name={settings.name} grades={settings.grades} />, target)
+  const defaultSettings = {
+    name: 'My Candidate',
+    grades: "1;2;8;19;10",
+    rank: 2
+  }
+  const settings = window.mjSettings ? window.mjSettings[id] : defaultSettings;
+  const grades = settings.grades.split(";").map(g => parseInt(g))
+
+  ReactDOM.render(<Result name={settings.name} grades={grades} rank={settings.rank} />, target)
 });
 
 // If you want to start measuring performance in your app, pass a function

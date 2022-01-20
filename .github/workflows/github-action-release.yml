@@ -1,10 +1,8 @@
 # a new release is executed at each new tag
-# on:
-#   push:
-#     tags:
-#       - '*'
-# a new release is executed at each new commit
-on: push
+on:
+  push:
+    tags:
+     - '*'
 
 jobs:
   build:
@@ -19,6 +17,12 @@ jobs:
         uses: actions/setup-node@v2
       - name: Install dependencies
         run: npm install    
+      - name: Install Fomantic
+        working-directory: ./widget/node_modules/fomantic-ui
+        run: npx gulp install    
+      - name: Build Fomantic
+        working-directory: ./widget/node_modules/fomantic-ui
+        run: npx gulp build    
           #      - name: Test
           #        run: npm test --passWithNoTests
           #        env:
