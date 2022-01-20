@@ -57,7 +57,7 @@ const Result = ({name, grades}) => {
                         style={{
                           left: `${(normalized[index] * 100) / 2
                             }%`,
-                          top: index % 2 == 0 ? "-20px" : "25px",
+                          top: index % 2 === 0 ? "-20px" : "25px",
                         }}
                       >
                         {Math.floor(100 * normalized[index])}%
