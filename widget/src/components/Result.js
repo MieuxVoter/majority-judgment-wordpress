@@ -10,17 +10,15 @@ export const GRADES = [
   {name: "Excellent", color: "green", value: 5},
 ]
 
-const Result = ({name, grades}) => {
+const Result = ({name, grades, rank}) => {
   /**
    * name: candidate name
    * grades: list of grades ordered by increasing importance.
    */
   const numVotes = grades.reduce((a, b) => a + b, 0)
   const normalized = grades.map(m => m / numVotes)
-  console.log(normalized)
 
-  let rank = 1
-
+  // find the majority grade
   let majorityGrade
   let acc = 0
   for (const gradeId in grades) {
@@ -34,12 +32,11 @@ const Result = ({name, grades}) => {
   // for mobile phone, we outgauge earlier than on desktop
   const outgaugeThreshold = (window.innerWidth <= 760) ? 0.05 : 0.03;
 
-  /* className={`ui ${majorityGrade.color} circular label`}*/
   return (
     <Card fluid>
       <Card.Content>
         <Card.Header>
-          <span >#{rank + 1}. </span>
+          <span ># {rank + 1}. </span>
           <span>{name}</span>
         </Card.Header>
         <Card.Description>
@@ -90,7 +87,7 @@ const Result = ({name, grades}) => {
 
         <div className="right floated meta">
           <i className="info circle icon"></i>
-          <a href='https://mieuxvoter.fr' target='_blank'>Plus de détails</a>
+          <a href='https://mieuxvoter.fr' target='_blank' rel='noreferrer'>Plus de détails</a>
         </div>
       </Card.Content>
     </Card >

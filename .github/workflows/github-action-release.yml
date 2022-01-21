@@ -31,7 +31,11 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: plugin-build
-          path: ./
+          path: |
+            ./widget/build
+            ./LICENSE
+            ./README.md
+            ./includes
   release:
     runs-on: ubuntu-latest
     defaults:
