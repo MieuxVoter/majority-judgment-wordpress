@@ -89,9 +89,8 @@ const Result = ({name, grades}) => {
         avis exprimés
 
         <div className="right floated meta">
-            <i className="info circle icon"></i>
-          <a href='https://mieuxvoter.fr' target='_blank'>
-            Plus de détails</a>
+          <i className="info circle icon"></i>
+          <a href='https://mieuxvoter.fr' target='_blank'>Plus de détails</a>
         </div>
       </Card.Content>
     </Card >

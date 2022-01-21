@@ -30,8 +30,8 @@ jobs:
       - name: Share artifact inside workflow
         uses: actions/upload-artifact@v1
         with:
-          name: widget-build
-          path: ./widget/build
+          name: plugin-build
+          path: ./
   release:
     runs-on: ubuntu-latest
     defaults:
@@ -49,7 +49,7 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           filename: majority-judgment.zip
-          path: widget-build
+          path: plugin-build
       # Upload as an artifact of the current workflow
       - name: Upload build zip artifact
         uses: actions/upload-artifact@v1
