@@ -18,6 +18,6 @@
   "permission": "744",
   "autoInstall": true,
   "rtl": false,
-  "components": ["label", "card"],
+  "components": ["label", "card", "icon"],
   "version": "2.9.0-beta.204"
 }
