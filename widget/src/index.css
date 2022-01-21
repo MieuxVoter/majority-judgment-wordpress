@@ -9,16 +9,17 @@ body {
 
 
 
-td.result {
+.result {
   text-align: center;
+  border-radius: 5px;
   color: white;
-  font-size: 0.9em;
   font-weight: bold;
+  margin-right: 0.1%;
   display: inline-block;
+  height: 40px;
   white-space: nowrap;
-	position: relative;
-	padding: 0px !important;
-	border: 0px !important;
+  position: relative;
+  padding: 0px !important;
 }
 .green { /*excellent */
   background-color: rgb(1, 152, 18) !important;
@@ -62,21 +63,57 @@ td.result {
 	margin: 4px;
 	border-radius: 6px;
 }
-.median {
-	height: 3.5em;
-	top: 3.5em;
-	border-right: 2px dashed gray;
+.median.label {
+	display: flex;
+	align-items: stretch;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.median.dash {
 	position: relative;
 	right: 50%;
-}
-.median-label {
-	position: relative;
-	left: 49%;
-	top: 4.5em;
-	font-size: 0.8em;
-	font-weight: bold;
-	color: gray;
+	height: 50px;
+	bottom: 45px;
+	border-right: 2px dashed black;
 }
 .block-container {
 	max-width: 1000px!important;
+}
+.majoritygrade {
+	border: 3px solid blue;
+	height: 34px;
+}
+.majoritygrade span {
+	padding-left: 20px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: stretch;
+}
+
+.bar-row .label {
+  flex: 0 0 120px;
+}
+
+.bar-row .bar-container {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.bar-row .bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.outgauge.above {
+	top: 35px;
+}
+.outgauge.below {
+	top: -30px;
 }

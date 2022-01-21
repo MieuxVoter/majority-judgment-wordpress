@@ -1,5 +1,6 @@
-import React from "react"
+import React from 'react';
 import {Card, Label} from "semantic-ui-react"
+
 
 export const GRADES = [
   {name: "A rejeter", color: "red", value: 1},
@@ -16,6 +17,7 @@ const Result = ({name, grades}) => {
    */
   const numVotes = grades.reduce((a, b) => a + b, 0)
   const normalized = grades.map(m => m / numVotes)
+  console.log(normalized)
 
   let rank = 1
 
@@ -29,57 +31,64 @@ const Result = ({name, grades}) => {
     }
   }
 
+  // for mobile phone, we outgauge earlier than on desktop
+  const outgaugeThreshold = (window.innerWidth <= 760) ? 0.05 : 0.03;
+
+  /* className={`ui ${majorityGrade.color} circular label`}*/
   return (
     <Card fluid>
       <Card.Content>
-        <Label size="large" className={`${majorityGrade.color} right floated`}>
-          {majorityGrade.name}
-          <div className="detail"># {rank + 1}</div>
-        </Label>
-        <Card.Header>{name}</Card.Header>
-        <Card.Description style={{marginBottom: "1em"}}>
-          <div className="median"></div>
-          <div className="median-label">50%</div>
-          <table style={{width: "100%"}}>
-            <tbody>
-              <tr>
-                {GRADES.map((grade, index) => (
-                  <td
-                    className={`${grade.color} result`}
-                    key={index}
-                    style={{
-                      width: `${normalized[index] * 100}%`,
-                    }}
-                  >
-                    {normalized[grade.value] < 0.05 ? (
-                      <span
-                        className="outgauge"
-                        style={{
-                          left: `${(normalized[index] * 100) / 2
-                            }%`,
-                          top: index % 2 === 0 ? "-20px" : "25px",
-                        }}
-                      >
-                        {Math.floor(100 * normalized[index])}%
-                      </span>
-                    ) : (
-                      <span>
-                        {Math.floor(100 * normalized[index])}%
-                      </span>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
+        <Card.Header>
+          <span >#{rank + 1}. </span>
+          <span>{name}</span>
+        </Card.Header>
+        <Card.Description>
+
+          <div className='median label'>
+            <Label size="large" pointing='below' color={majorityGrade.color}>
+              {majorityGrade.name}
+            </Label>
+          </div>
+          <div className='bar-row'>
+            <div className="bar-container">
+              {GRADES.map((grade, index) => {
+                const className = `${grade.color} bar result ${majorityGrade.value === grade.value ? 'majoritygrade' : ''}`
+                const width = `${normalized[index] * 100 - 0.1}%`
+                const textWidth = Math.floor(100 * normalized[index])
+
+                return (
+                  <div className={className} style={{"flex-basis": width}}>
+                    {
+                      normalized[index] < outgaugeThreshold ? (
+                        <span
+                          className={`outgauge ${index % 2 ? 'above' : 'below'}`}
+                          style={{
+                            left: `${(normalized[index] * 100) / 2
+                              }%`,
+                          }}
+                        >
+                          {textWidth}%
+                        </span>
+                      ) : (
+                        <span>
+                          {Math.floor(100 * normalized[index])}%
+                        </span>
+                      )
+                    }
+                  </div>)
+              }
+              )}
+            </div>
+          </div>
+          <div className='median dash'> </div>
         </Card.Description>
-      </Card.Content>
+      </Card.Content >
       <Card.Content extra>
         <i className="vote yea icon"></i>
         {numVotes}{" "}
         avis exprimés
       </Card.Content>
-    </Card>
+    </Card >
   )
 }
 export default Result;
