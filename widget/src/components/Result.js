@@ -19,21 +19,36 @@ const Result = ({name, grades, rank}) => {
   const normalized = grades.map(m => m / numVotes)
 
   // find the majority grade
-  let majorityGrade
-  let acc = 0
+  let majorityGrade = GRADES[0]
+  let accProponents = 0
+  let accOpponents = 0
+  let isProponent = false
+  let isOpponent = true
   for (const gradeId in grades) {
-    acc += grades[gradeId]
-    if (acc > numVotes / 2) {
+    if (isOpponent) {
+      accOpponents += grades[gradeId]
+    }
+    if (isProponent) {
+      accProponents += grades[gradeId]
+    }
+    if (isOpponent && accOpponents > numVotes / 2) {
       majorityGrade = GRADES[gradeId]
-      break
+      accOpponents -= grades[gradeId]
+      isOpponent = false
+      isProponent = true
     }
   }
+
+  // is proponent higher than opposant?
+  const proponentMajority = accProponents > accOpponents;
+
+
 
   // for mobile phone, we outgauge earlier than on desktop
   const outgaugeThreshold = (window.innerWidth <= 760) ? 0.05 : 0.03;
 
   return (
-    <Card fluid>
+    <Card fluid className='mv'>
       <Card.Content>
         <Card.Header>
           <span ># {rank + 1}. </span>
@@ -48,8 +63,44 @@ const Result = ({name, grades, rank}) => {
           </div>
           <div className='bar-row'>
             <div className="bar-container">
+              <div className={`opponents ${proponentMajority ? '' : 'majority'}`}>
+                {GRADES.map((grade, index) => {
+                  if (grade.value >= majorityGrade.value) {
+                    return null;
+                  }
+
+                  const className = `${grade.color} bar result ${majorityGrade.value === grade.value ? 'majoritygrade' : ''}`
+                  const width = `${normalized[index] * 100 - 0.1}%`
+                  const textWidth = Math.floor(100 * normalized[index])
+
+                  return (
+                    <div className={className} style={{"flex-basis": width}}>
+                      {
+                        normalized[index] < outgaugeThreshold ? (
+                          <span
+                            className={`outgauge ${index % 2 ? 'above' : 'below'}`}
+                            style={{
+                              left: `${(normalized[index] * 100) / 2
+                                }%`,
+                            }}
+                          >
+                            {textWidth}%
+                          </span>
+                        ) : (
+                          <span>
+                            {Math.floor(100 * normalized[index])}%
+                          </span>
+                        )
+                      }
+                    </div>)
+                }
+                )}
+              </div>
               {GRADES.map((grade, index) => {
-                const className = `${grade.color} bar result ${majorityGrade.value === grade.value ? 'majoritygrade' : ''}`
+                if (grade.value !== majorityGrade.value) {
+                  return null;
+                }
+                const className = `${grade.color} bar result majoritygrade`
                 const width = `${normalized[index] * 100 - 0.1}%`
                 const textWidth = Math.floor(100 * normalized[index])
 
@@ -75,6 +126,38 @@ const Result = ({name, grades, rank}) => {
                   </div>)
               }
               )}
+              <div className={`proponents ${proponentMajority ? 'majority' : ''}`}>
+                {GRADES.map((grade, index) => {
+                  if (grade.value <= majorityGrade.value) {
+                    return null;
+                  }
+                  const className = `${grade.color} bar resultmajoritygrade`
+                  const width = `${normalized[index] * 100 - 0.1}%`
+                  const textWidth = Math.floor(100 * normalized[index])
+
+                  return (
+                    <div className={className} style={{"flex-basis": width}}>
+                      {
+                        normalized[index] < outgaugeThreshold ? (
+                          <span
+                            className={`outgauge ${index % 2 ? 'above' : 'below'}`}
+                            style={{
+                              left: `${(normalized[index] * 100) / 2
+                                }%`,
+                            }}
+                          >
+                            {textWidth}%
+                          </span>
+                        ) : (
+                          <span>
+                            {Math.floor(100 * normalized[index])}%
+                          </span>
+                        )
+                      }
+                    </div>)
+                }
+                )}
+              </div>
             </div>
           </div>
           <div className='median dash'> </div>

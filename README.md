@@ -61,4 +61,4 @@ To display the widget on a page, you need to add [a shortcode](https://wordpress
 
 Assuming you are using the visual editor of WordPress, you can add such shortcode by adding a new block. A PLUS sign should appear on the top right corner of this block. Select a shortcode under the WIDGETS modules.
 
-Finally, type `[mj-result name="My Candidate Name" rank=1 notes_by_grades=VeryGood=5&Good=3 ]` there. You can also use default grade names and only provide the list of nodes, ordered from worst to best grade: `[mj-result name="My Candidate Name" rank=1 notes="5;7;4;2" ]` 
+Finally, type `[mj-result name="My Candidate Name" rank="1" grades="6;4;5;23;12" ]` there.

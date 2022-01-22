@@ -1,17 +1,13 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.mv {
+  font-family: 'silkamedium';
+}
+.mv .header {
+  color: rgb(0, 0, 196) !important;
+  font-family: 'silkamedium' !important;
 }
 
-
-
-.result {
+.mv .result {
   text-align: center;
-  border-radius: 5px;
   color: white;
   font-weight: bold;
   margin-right: 0.1%;
@@ -21,49 +17,49 @@ body {
   position: relative;
   padding: 0px !important;
 }
-.green { /*excellent */
+.mv .green { /*excellent */
   background-color: rgb(1, 152, 18) !important;
 }
-.green .outgauge { /*excellent */
+.mv .green .outgauge { /*excellent */
   color: rgb(1, 152, 18) !important;
 }
-.olive { /* Bien */
+.mv .olive { /* Bien */
   background-color: rgb(107, 202, 36) !important;
 }
-.olive .outgauge { /* Bien */
+.mv .olive .outgauge { /* Bien */
   color: rgb(107, 202, 36) !important;
 }
-.yellow { /* Passable */
+.mv .yellow { /* Passable */
   background-color: rgb(255, 178, 0) !important;
 }
-.yellow .outgauge { /* Passable */
+.mv .yellow .outgauge { /* Passable */
   color: rgb(227, 159, 0) !important;
 }
-.orange { /* Mauvais */
+.mv .orange { /* Mauvais */
   background-color: rgb(255, 93, 0) !important;
 }
-.orange .outgauge {
+.mv .orange .outgauge {
 	color: rgb(255, 93, 0) !important;
 }
-.red { /* À rejeter */
+.mv .red { /* À rejeter */
   background-color: rgb(178, 6, 22) !important;
 }
-.red .outgauge {
+.mv .red .outgauge {
 	color: rgb(178, 6, 22) !important;
 }
-.outgauge {
+.mv .outgauge {
 	position: relative;
 	display: block;
 	font-size: 0.7em;
 }
-.badge {
+.mv .badge {
 	padding: 6px;
 	color: white;
 	font-size: 0.8em;
 	margin: 4px;
 	border-radius: 6px;
 }
-.median.label {
+.mv .median.label {
 	display: flex;
 	align-items: stretch;
 	flex-direction: row;
@@ -72,48 +68,56 @@ body {
 	align-items: center;
 	margin-bottom: 10px;
 }
-.median.dash {
+.mv .median.dash {
 	position: relative;
 	right: 50%;
 	height: 50px;
 	bottom: 45px;
 	border-right: 2px dashed black;
 }
-.block-container {
+.mv .block-container {
 	max-width: 1000px!important;
 }
-.majoritygrade {
-	border: 3px solid blue;
+.mv .majoritygrade {
+	border: 3px solid rgb(0, 0, 196);
 	height: 34px;
 }
-.majoritygrade span {
+.mv .majoritygrade span {
 	padding-left: 20px;
 }
-
-.bar-row {
+.mv .bar-row {
   display: flex;
   align-items: stretch;
 }
-
-.bar-row .label {
+.mv .bar-row .label {
   flex: 0 0 120px;
 }
 
-.bar-row .bar-container {
+.mv .bar-row .bar-container, .opponents, .proponents {
   flex: 1;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
+  margin-right: 5px;
+}
+.mv .proponents.majority {
+  border: 3px solid #2D7613;
+}
+.mv .opponents.majority {
+  border: 3px solid #661800;
+}
+.mv .majority .result {
+  height: 34px;
 }
 
-.bar-row .bar {
+.mv .bar-row .bar {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.outgauge.above {
+.mv .outgauge.above {
 	top: 35px;
 }
-.outgauge.below {
+.mv .outgauge.below {
 	top: -30px;
 }

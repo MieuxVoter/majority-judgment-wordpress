@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Result from './components/Result';
 import reportWebVitals from './reportWebVitals';
 import './semantic/dist/semantic.min.css'
+import './fonts/silka.css';
 import './index.css';
 
 

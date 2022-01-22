@@ -20,7 +20,6 @@ add_shortcode( 'mj_example', function( $atts ) {
     'name': '<?= $display_name ?>',
   }
   </script>
-FOOOO
   <div class="erw-root" data-id="<?= $uniqid ?>"></div>
 
   <?php
@@ -31,6 +30,7 @@ FOOOO
 add_shortcode( 'mj_result', function( $atts ) {
 	$default_atts = [
 		'name' => 'Candidate name',
+		'rank' => '2',
     'grades' => '1;1;1;1;1'
 	];
   $args = shortcode_atts( $default_atts, $atts );
@@ -42,6 +42,7 @@ add_shortcode( 'mj_result', function( $atts ) {
   window.mjSettings["<?= $uniqid ?>"] = {
     'name': '<?= $args["name"] ?>',
     'grades': '<?= $args['grades'] ?>',
+    'rank': '<?= $args['rank'] ?>',
   }
   </script>
 
