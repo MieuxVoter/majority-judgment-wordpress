@@ -33,9 +33,8 @@ jobs:
           name: plugin-build
           path: |
             ./widget/build
-            ./LICENSE
-            ./README.md
-            ./includes
+            **/*.php
+            
   release:
     runs-on: ubuntu-latest
     defaults:
