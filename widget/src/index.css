@@ -17,29 +17,35 @@
   position: relative;
   padding: 0px !important;
 }
-.mv .green { /*excellent */
-  background-color: rgb(1, 152, 18) !important;
+.mv .darkgreen { /*excellent */
+  background-color: #007C33 !important;
 }
-.mv .green .outgauge { /*excellent */
-  color: rgb(1, 152, 18) !important;
+.mv .darkgreen .outgauge { /*excellent */
+  color: #007C33 !important;
+}
+.mv .green { /*tres bien */
+  background-color: #00c24f !important;
+}
+.mv .green .outgauge { /*tres bien */
+  color: #00c24f !important;
 }
 .mv .olive { /* Bien */
-  background-color: rgb(107, 202, 36) !important;
+  background-color: #7cd63a !important;
 }
 .mv .olive .outgauge { /* Bien */
-  color: rgb(107, 202, 36) !important;
+  color: #7cd63a !important;
 }
 .mv .yellow { /* Passable */
-  background-color: rgb(255, 178, 0) !important;
+  background-color: #fec200 !important;
 }
 .mv .yellow .outgauge { /* Passable */
-  color: rgb(227, 159, 0) !important;
+  color: #fec200 !important;
 }
 .mv .orange { /* Mauvais */
-  background-color: rgb(255, 93, 0) !important;
+  background-color: #fc7700 !important;
 }
 .mv .orange .outgauge {
-	color: rgb(255, 93, 0) !important;
+	color: #fc7700 !important;
 }
 .mv .red { /* À rejeter */
   background-color: rgb(178, 6, 22) !important;
@@ -71,9 +77,9 @@
 .mv .median.dash {
 	position: relative;
 	right: 50%;
-	height: 50px;
-	bottom: 45px;
-	border-right: 2px dashed black;
+	height: 40px;
+	bottom: 40px;
+	border-right: 1px dashed black;
 }
 .mv .block-container {
 	max-width: 1000px!important;
@@ -81,10 +87,11 @@
 .mv .majoritygrade {
 	border: 3px solid rgb(0, 0, 196);
 	height: 34px;
+  margin-right: 5px;
 }
-.mv .majoritygrade span {
+/* .mv .majoritygrade span {
 	padding-left: 20px;
-}
+}*/
 .mv .bar-row {
   display: flex;
   align-items: stretch;
@@ -93,15 +100,15 @@
   flex: 0 0 120px;
 }
 
-.mv .bar-row .bar-container, .opponents, .proponents {
-  flex: 1;
+.mv .bar-row .bar-container {
+  flex: 0 1 auto;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
   margin-right: 5px;
 }
 .mv .proponents.majority {
-  border: 3px solid #2D7613;
+  border: 3px solid #005021;
 }
 .mv .opponents.majority {
   border: 3px solid #661800;
@@ -112,8 +119,10 @@
 
 .mv .bar-row .bar {
   display: flex;
+  flex: 0 0;
   justify-content: center;
   align-items: center;
+  min-width: 5px;
 }
 .mv .outgauge.above {
 	top: 35px;
