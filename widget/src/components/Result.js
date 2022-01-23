@@ -3,11 +3,11 @@ import {Card, Label} from "semantic-ui-react"
 
 
 export const GRADES = [
-  {name: "Insuffisant", color: "orange", value: 1},
-  {name: "Passable", color: "yellow", value: 2},
-  {name: "Assez bien", color: "olive", value: 3},
-  {name: "Bien", color: "green", value: 4},
   {name: "Très bien", color: "darkgreen", value: 5},
+  {name: "Bien", color: "green", value: 4},
+  {name: "Assez bien", color: "olive", value: 3},
+  {name: "Passable", color: "yellow", value: 2},
+  {name: "Insuffisant", color: "orange", value: 1},
 ]
 
 const Result = ({name, grades, rank}) => {
@@ -20,27 +20,27 @@ const Result = ({name, grades, rank}) => {
 
   // find the majority grade
   let majorityGrade = GRADES[0]
-  let accProponents = 0
-  let accOpponents = 0
-  let isProponent = false
-  let isOpponent = true
+  let accAfter = 0
+  let accBefore = 0
+  let isAfter = false
+  let isBefore = true
   for (const gradeId in grades) {
-    if (isOpponent) {
-      accOpponents += grades[gradeId]
+    if (isBefore) {
+      accBefore += grades[gradeId]
     }
-    if (isProponent) {
-      accProponents += grades[gradeId]
+    if (isAfter) {
+      accAfter += grades[gradeId]
     }
-    if (isOpponent && accOpponents > numVotes / 2) {
+    if (isBefore && accBefore > numVotes / 2) {
       majorityGrade = GRADES[gradeId]
-      accOpponents -= grades[gradeId]
-      isOpponent = false
-      isProponent = true
+      accBefore -= grades[gradeId]
+      isBefore = false
+      isAfter = true
     }
   }
 
   // is proponent higher than opposant?
-  const proponentMajority = accProponents > accOpponents;
+  const proponentMajority = accAfter > accBefore;
 
 
 
@@ -51,7 +51,7 @@ const Result = ({name, grades, rank}) => {
     <Card fluid className='mv'>
       <Card.Content>
         <Card.Header>
-          <span ># {parseInt(rank) + 1}. </span>
+          <span ># {rank + 1}. </span>
           <span>{name}</span>
         </Card.Header>
         <Card.Description>
@@ -62,14 +62,13 @@ const Result = ({name, grades, rank}) => {
             </Label>
           </div>
           <div className='bar-row'>
-            <div className={`opponents ${proponentMajority ? '' : 'majority'}`} style={{'flex-basis': `${accOpponents / numVotes * 100}%`}}>
+            <div className={`proponents ${proponentMajority ? 'majority' : ''}`} style={{'flex-basis': `${accBefore / numVotes * 100}%`}}>
               {GRADES.map((grade, index) => {
-                if (grade.value >= majorityGrade.value) {
+                if (grade.value <= majorityGrade.value) {
                   return null;
                 }
-
-                const className = `${grade.color} bar result ${majorityGrade.value === grade.value ? 'majoritygrade' : ''}`
-                const width = `${normalized[index] * 100 * numVotes / accOpponents}%`
+                const className = `${grade.color} bar result`
+                const width = `${normalized[index] * 100 * numVotes / accBefore}%`
                 const textWidth = Math.floor(100 * normalized[index])
 
                 return (
@@ -125,13 +124,14 @@ const Result = ({name, grades, rank}) => {
                 </div>)
             }
             )}
-            <div className={`proponents ${proponentMajority ? 'majority' : ''}`} style={{'flex-basis': `${accProponents / numVotes * 100}%`}}>
+            <div className={`opponents ${proponentMajority ? '' : 'majority'}`} style={{'flex-basis': `${accAfter / numVotes * 100}%`}}>
               {GRADES.map((grade, index) => {
-                if (grade.value <= majorityGrade.value) {
+                if (grade.value >= majorityGrade.value) {
                   return null;
                 }
-                const className = `${grade.color} bar result`
-                const width = `${normalized[index] * 100 * numVotes / accProponents}%`
+
+                const className = `${grade.color} bar result ${majorityGrade.value === grade.value ? 'majoritygrade' : ''}`
+                const width = `${normalized[index] * 100 * numVotes / accAfter}%`
                 const textWidth = Math.floor(100 * normalized[index])
 
                 return (
