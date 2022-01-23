@@ -31,8 +31,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: plugin-build
-          path: |
-            ./widget/build
+          path: ./widget/build
             
   release:
     runs-on: ubuntu-latest

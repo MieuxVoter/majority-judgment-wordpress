@@ -51,7 +51,7 @@ const Result = ({name, grades, rank}) => {
     <Card fluid className='mv'>
       <Card.Content>
         <Card.Header>
-          <span ># {rank + 1}. </span>
+          <span ># {parseInt(rank) + 1}. </span>
           <span>{name}</span>
         </Card.Header>
         <Card.Description>
@@ -62,7 +62,7 @@ const Result = ({name, grades, rank}) => {
             </Label>
           </div>
           <div className='bar-row'>
-            <div className={`bar-container opponents ${proponentMajority ? '' : 'majority'}`} style={{'flex-basis': `${accOpponents / numVotes * 100}%`}}>
+            <div className={`opponents ${proponentMajority ? '' : 'majority'}`} style={{'flex-basis': `${accOpponents / numVotes * 100}%`}}>
               {GRADES.map((grade, index) => {
                 if (grade.value >= majorityGrade.value) {
                   return null;
@@ -125,7 +125,7 @@ const Result = ({name, grades, rank}) => {
                 </div>)
             }
             )}
-            <div className={`proponents bar-container ${proponentMajority ? 'majority' : ''}`} style={{'flex-basis': `${accProponents / numVotes * 100}%`}}>
+            <div className={`proponents ${proponentMajority ? 'majority' : ''}`} style={{'flex-basis': `${accProponents / numVotes * 100}%`}}>
               {GRADES.map((grade, index) => {
                 if (grade.value <= majorityGrade.value) {
                   return null;
