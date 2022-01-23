@@ -33,7 +33,6 @@ jobs:
           name: plugin-build
           path: |
             ./widget/build
-            **/*.php
             
   release:
     runs-on: ubuntu-latest
