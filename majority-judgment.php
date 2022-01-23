@@ -4,7 +4,7 @@
  * Plugin Name:       Majority Jugdment
  * Plugin URI:        https://github.com/MieuxVoter/mv-wordpress
  * Description:       Visualize the results of a majority jugment vote .
- * Version:           0.0.1
+ * Version:           0.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Pierre-Louis Guhur (Mieux Voter)

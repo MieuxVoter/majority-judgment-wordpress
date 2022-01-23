@@ -51,7 +51,7 @@ const Result = ({name, grades, rank}) => {
     <Card fluid className='mv'>
       <Card.Content>
         <Card.Header>
-          <span ># {rank + 1}. </span>
+          <span ># {rank}. </span>
           <span>{name}</span>
         </Card.Header>
         <Card.Description>
