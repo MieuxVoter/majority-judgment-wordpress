@@ -28,10 +28,12 @@ jobs:
         run: CI=false npm run build
       # Share artifact inside workflow
       - name: Share artifact inside workflow
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: plugin-build
-          path: ./widget/build
+          path: |
+            ./widget/build
+            **/*.php
             
   release:
     runs-on: ubuntu-latest
@@ -44,7 +46,7 @@ jobs:
       - name: Get artifact
         uses: actions/download-artifact@v1
         with:
-          name: widget-build
+          name: plugin-build
       # Zip the build using external action
       - name: Zip build
         uses: thedoctor0/zip-release@master
