@@ -20,27 +20,28 @@ const Result = ({name, grades, rank}) => {
 
   // find the majority grade
   let majorityGrade = GRADES[0]
-  let accAfter = 0
-  let accBefore = 0
-  let isAfter = false
-  let isBefore = true
-  for (const gradeId in grades) {
-    if (isBefore) {
-      accBefore += grades[gradeId]
+  let accProponent = 0
+  let accOpponent = 0
+  let isProponent = false
+  let isOpponent = true
+  for (const gradeId in grades.reverse()) {
+    if (isOpponent) {
+      accOpponent += grades[gradeId]
     }
-    if (isAfter) {
-      accAfter += grades[gradeId]
+    if (isProponent) {
+      accProponent += grades[gradeId]
     }
-    if (isBefore && accBefore > numVotes / 2) {
+    if (isOpponent && accOpponent > numVotes / 2) {
       majorityGrade = GRADES[gradeId]
-      accBefore -= grades[gradeId]
-      isBefore = false
-      isAfter = true
+      accOpponent -= grades[gradeId]
+      isOpponent = false
+      isProponent = true
     }
+    console.log("Prop", accProponent, "opp", accOpponent)
   }
 
   // is proponent higher than opposant?
-  const proponentMajority = accAfter > accBefore;
+  const proponentMajority = accProponent > accOpponent;
 
 
 
@@ -62,17 +63,17 @@ const Result = ({name, grades, rank}) => {
             </Label>
           </div>
           <div className='bar-row'>
-            <div className={`proponents ${proponentMajority ? 'majority' : ''}`} style={{'flex-basis': `${accBefore / numVotes * 100}%`}}>
+            <div className={`proponents ${proponentMajority ? 'majority' : ''}`} style={{'flexBasis': `${accOpponent / numVotes * 100}%`}}>
               {GRADES.map((grade, index) => {
                 if (grade.value <= majorityGrade.value) {
                   return null;
                 }
                 const className = `${grade.color} bar result`
-                const width = `${normalized[index] * 100 * numVotes / accBefore}%`
+                const width = `${normalized[index] * 100 * numVotes / accProponent}%`
                 const textWidth = Math.floor(100 * normalized[index])
 
                 return (
-                  <div className={className} style={{"flex-basis": width}}>
+                  <div className={className} key={index} style={{"flexBasis": width}}>
                     {
                       normalized[index] < outgaugeThreshold ? (
                         <span
@@ -103,7 +104,7 @@ const Result = ({name, grades, rank}) => {
               const textWidth = Math.floor(100 * normalized[index])
 
               return (
-                <div className={className} style={{"flex-basis": width}}>
+                <div className={className} key={index} style={{"flexBasis": width}}>
                   {
                     normalized[index] < outgaugeThreshold ? (
                       <span
@@ -124,18 +125,18 @@ const Result = ({name, grades, rank}) => {
                 </div>)
             }
             )}
-            <div className={`opponents ${proponentMajority ? '' : 'majority'}`} style={{'flex-basis': `${accAfter / numVotes * 100}%`}}>
+            <div className={`opponents ${proponentMajority ? '' : 'majority'}`} style={{'flexBasis': `${accProponent / numVotes * 100}%`}}>
               {GRADES.map((grade, index) => {
                 if (grade.value >= majorityGrade.value) {
                   return null;
                 }
 
                 const className = `${grade.color} bar result ${majorityGrade.value === grade.value ? 'majoritygrade' : ''}`
-                const width = `${normalized[index] * 100 * numVotes / accAfter}%`
+                const width = `${normalized[index] * 100 * numVotes / accOpponent}%`
                 const textWidth = Math.floor(100 * normalized[index])
 
                 return (
-                  <div className={className} style={{"flex-basis": width}}>
+                  <div className={className} key={index} style={{"flexBasis": width}}>
                     {
                       normalized[index] < outgaugeThreshold ? (
                         <span

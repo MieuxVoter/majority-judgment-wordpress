@@ -13,7 +13,7 @@ Array.prototype.forEach.call(targets, target => {
   const id = target.dataset.id;
   const defaultSettings = {
     name: 'My Candidate',
-    grades: "1;2;8;190;100",
+    grades: "2;35;37;13;10",
     rank: 2
   }
   const settings = window.mjSettings ? window.mjSettings[id] : defaultSettings;

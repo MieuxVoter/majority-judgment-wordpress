@@ -5,7 +5,9 @@
   color: rgb(0, 0, 196) !important;
   font-family: 'silkamedium' !important;
 }
-
+.mv .description {
+	height: 150px;
+}
 .mv .result {
   text-align: center;
   color: white;
@@ -75,8 +77,8 @@
 .mv .median.dash {
 	position: relative;
 	right: 50%;
-	height: 40px;
-	bottom: 40px;
+	height: 160px;
+	bottom: 130px;
 	border-right: 1px dashed black;
 }
 .mv .block-container {
@@ -125,4 +127,7 @@
 }
 .mv .outgauge.below {
 	top: -30px;
+}
+.mv .label {
+	z-index: 10;
 }
